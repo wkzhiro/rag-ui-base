@@ -1,4 +1,5 @@
 import * as React from "react";
+import Image from "next/image";
 import { InfoRow } from "./InfoRow";
 import { Tag } from "./Tag";
 import { BusinessCardProps } from "../types";
@@ -14,11 +15,13 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({
   return (
     <div className="flex flex-col pb-4 bg-white rounded-lg shadow-[0px_2px_4px_rgba(0,0,0,0.15)] max-md:max-w-full">
       <div className="flex flex-col px-5 mt-4 w-full max-md:max-w-full">
-        <img
-          loading="lazy"
+        <Image
           src={image}
           alt="Business update presentation cover"
-          className="object-contain w-full aspect-[1.72] max-md:max-w-full"
+          width={800}
+          height={465}
+          loading="lazy"
+          className="object-contain w-full max-md:max-w-full"
         />
         <div className="self-start mt-5 text-base font-bold text-neutral-700">
           {title}
@@ -46,7 +49,6 @@ export const BusinessCard: React.FC<BusinessCardProps> = ({
           <button className="flex flex-col justify-center items-center px-4 py-1 text-sm font-bold tracking-normal leading-none text-center text-white whitespace-nowrap bg-red-700 rounded-2xl min-h-[28px]">
             <div className="flex gap-1.5 items-center">
               <img
-                loading="lazy"
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/cda29923e2f598d7e414a8ae04dd678b7d11e0a938353862902bca33943c5b8f?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfdoadIcon"
                 alt=""
                 className="object-contain shrink-0 self-stretch my-auto w-5 aspect-square"
