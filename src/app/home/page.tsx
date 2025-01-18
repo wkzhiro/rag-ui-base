@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+// import { createContext, useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Header } from "../../../component/Header";
@@ -9,12 +10,50 @@ import { FilterSection } from "../../../component/FilterSection";
 import { Pagination } from "../../../component/Pagination";
 import { BusinessCard } from "../../../component/businesscard/BusinessCard";
 import { businessCardsData, filterSections } from "./index";
+import { useDataContext } from "../context/DataContext";
+import CheckDataContext from "../../../component/CheckDataContext";
 
 const DocumentLibrary: React.FC = () => {
+  const { data, loading, error } = useDataContext();
+  const facetInfo = data?.facet_info || {};
+  const initial_search_data = data?.search_results || {};
+
+  // 検索結果のページ表示用
+  const currentPage = 1; // 現在のページ（必要に応じて動的に変更）
+  const itemsPerPage = 20; // 1ページあたりのアイテム数
+  const totalCount = data?.total_count || 0;
+  // 表示範囲を計算
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, totalCount);
+
+  // Loading処理
+  if (loading) {
+    return (
+      <div className="flex overflow-hidden flex-col bg-gray-200">
+        <Header />
+        <div className="flex items-center justify-center min-h-screen">
+          <p>読み込み中...</p>
+        </div>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="flex overflow-hidden flex-col bg-gray-200">
+        <Header />
+        <div className="flex items-center justify-center min-h-screen">
+          <p>エラーが発生しました: {error}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex overflow-hidden flex-col bg-gray-200">
+      {/* データデバッグ用コンポーネント */}
+      {/* <CheckDataContext /> */}
+      
       <Header />
-
       <div className="flex flex-wrap gap-5 justify-between w-full tracking-wider max-w-[1472px] max-md:max-w-full">
         <div className="flex flex-wrap gap-10 max-md:max-w-full">
           <div className="flex flex-auto gap-10 items-start px-10 pt-5 pb-10 text-white whitespace-nowrap rounded-none shadow-[0px_2px_4px_rgba(0,0,0,0.15)] max-md:px-5">
@@ -40,8 +79,10 @@ const DocumentLibrary: React.FC = () => {
             </button>
           </div>
           <div className="self-start mt-5 text-sm font-medium leading-none text-neutral-700">
-            <span className="font-bold tracking-normal">1 - 20</span>
-            <span className="font-bold"> / 320個</span>
+            <span className="font-bold tracking-normal">
+              {startItem} - {endItem}
+            </span>
+            <span className="font-bold"> / {totalCount}個</span>
           </div>
         </div>
         <button className="flex gap-2 px-2.5 py-1.5 my-auto text-xs font-medium leading-none whitespace-nowrap bg-white rounded text-neutral-700">
@@ -58,15 +99,51 @@ const DocumentLibrary: React.FC = () => {
 
       <div className="flex gap-5 px-10 mt-5 max-md:flex-col max-md:px-5">
         <div className="flex flex-col max-w-xs">
-          {filterSections.map((section, index) => (
+          {/* {filterSections.map((section, index) => (
             <div key={index} className={index > 0 ? "mt-5" : ""}>
               <FilterSection title={section.title} items={section.items} />
             </div>
-          ))}
+          ))} */}
+          {Object.entries(facetInfo || {}).map(([facetTitle, facetItems], index) => (
+          <div key={index} className={index > 0 ? "mt-5" : ""}>
+            <FilterSection
+              title={facetTitle}
+              items={
+                Array.isArray(facetItems)
+                  ? facetItems.map((item) => ({
+                      label: item.value,
+                      count: item.count,
+                    }))
+                  : []
+              }
+            />
+          </div>
+        ))}
         </div>
 
         <div className="flex flex-col w-full">
-          <div className="grid grid-cols-2 gap-6">
+
+        
+            <div className="grid grid-cols-2 gap-6">
+              {Array.isArray(initial_search_data) &&
+                initial_search_data.map((card, index) => (
+                  <BusinessCard
+                    key={card.id} // 一意のidを利用
+                    title={card.title}
+                    image="https://cdn.builder.io/api/v1/image/assets/TEMP/6d97fd457a583205ad0140861cd75209c8bfc99d2761725896295a529228691e" // 必要に応じてデフォルト画像を指定
+                    personInfo={{
+                      name: card.authors.join(", "),
+                      department: card.category,
+                      documentType: "マーケティング資料",
+                    }}
+                    tags={card.tags}
+                    date={new Date(card.release_year, 0, 1).toLocaleDateString()} // リリース年をフォーマット
+                    fileType="PDF" // 必要ならデフォルトのファイル種別
+                  />
+                ))}
+            </div>
+          
+          {/* <div className="grid grid-cols-2 gap-6">
             {businessCardsData.map((card, index) => (
               <BusinessCard
                 key={index}
@@ -78,7 +155,7 @@ const DocumentLibrary: React.FC = () => {
                 fileType={card.fileType}
               />
             ))}
-          </div>
+          </div> */}
 
           {/* Pagination（BusinessCardと同じ幅にする） */}
           <div className="mt-8 flex justify-center w-full">
@@ -92,7 +169,6 @@ const DocumentLibrary: React.FC = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
