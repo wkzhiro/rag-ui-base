@@ -130,7 +130,7 @@ const DocumentLibrary: React.FC = () => {
                   <BusinessCard
                     key={card.id} // 一意のidを利用
                     title={card.title}
-                    image="https://cdn.builder.io/api/v1/image/assets/TEMP/6d97fd457a583205ad0140861cd75209c8bfc99d2761725896295a529228691e" // 必要に応じてデフォルト画像を指定
+                    image="https://geekpictures.co.jp/jp/wp-content/themes/geek/img/logo_head.svg" // 必要に応じてデフォルト画像を指定
                     personInfo={{
                       name: card.authors.join(", "),
                       department: card.category,

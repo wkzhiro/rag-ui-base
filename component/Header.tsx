@@ -5,7 +5,7 @@ export const Header: React.FC = () => {
   return (
     <header className="flex flex-wrap gap-5 justify-between px-10 py-4 w-full text-xs tracking-wider text-red-200 whitespace-nowrap bg-white max-md:px-5 max-md:max-w-full">
       <Image
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/756673b619d287511f3f97d02b174d7f6c6ecb3f005c37930de133249928f31e?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
+        src="https://geekpictures.co.jp/jp/wp-content/themes/geek/img/logo_head.svg"
         alt="Company Logo"
         width={360}
         height={36}
