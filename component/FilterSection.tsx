@@ -10,7 +10,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
     <div className="flex flex-col pt-3 pr-2 pb-4 pl-4 w-full whitespace-nowrap bg-white rounded-lg shadow-[0px_2px_4px_rgba(0,0,0,0.15)]">
       <div className="flex items-center max-w-full font-bold min-h-[24px] w-[254px]">
         <div className="self-stretch my-auto w-[230px]">{title}</div>
-        <Image
+        <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/42a95c112db45c5d15d428e1c4b41ff40b4dc65767cafc01f5322a2ccd02c463?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
           alt="アイコン"

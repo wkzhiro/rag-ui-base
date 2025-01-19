@@ -16,7 +16,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         className="flex gap-3 whitespace-nowrap"
         aria-label="Previous page"
       >
-        <Image
+        <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/3872fc3e4d75bb1de909bb7f5ff50d118b3cd46097bbc8d12cfb752a3076d837?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
           alt="前へアイコン"
@@ -39,7 +39,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         aria-label="Next page"
       >
         <div>次へ</div>
-        <Image
+        <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/5d9b980931dfacbc47907f2d673a184cd968cd4c26f5d082f8f472b4c8722fa3?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
           alt="次へアイコン"
