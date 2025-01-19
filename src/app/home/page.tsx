@@ -56,9 +56,9 @@ const DocumentLibrary: React.FC = () => {
       <Header />
       <div className="flex flex-wrap gap-5 justify-between w-full tracking-wider max-w-[1472px] max-md:max-w-full">
         <div className="flex flex-wrap gap-10 max-md:max-w-full">
-          <div className="flex flex-auto gap-10 items-start px-10 pt-5 pb-10 text-white whitespace-nowrap rounded-none shadow-[0px_2px_4px_rgba(0,0,0,0.15)] max-md:px-5">
+          <div className="flex flex-auto gap-10 items-start px-10 pt-5 pb-10 text-white whitespace-nowrap rounded-none shadow-[0px_2px_4px_rgba(0,0,0,0.15)] max-md:px-5 bg-gradient-to-r from-red-500 to-red-300">
             <div className="flex gap-1.5 text-base font-bold">
-              <Image
+              <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2502d2f9a34553129fa3e3b6b13d5a12579f63d0e722bead251c0713c3df07?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
                 alt="フィルターアイコン"
                 width={22}
@@ -68,7 +68,7 @@ const DocumentLibrary: React.FC = () => {
               <div className="my-auto">絞り込み</div>
             </div>
             <button className="flex text-xs" aria-label="Clear filters">
-              <Image
+              <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/c49cce0b02985bf931b57aed5966ad03c37362cf76515023ecb9c13ed22b5d81?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
                 alt="クリアアイコン"
                 width={18}
@@ -86,7 +86,7 @@ const DocumentLibrary: React.FC = () => {
           </div>
         </div>
         <button className="flex gap-2 px-2.5 py-1.5 my-auto text-xs font-medium leading-none whitespace-nowrap bg-white rounded text-neutral-700">
-          <Image
+          <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/66563bd943205171cef57f46fb5c0353a2ed303e51d3517ceddd75738ce9d691?placeholderIfAbsent=true&apiKey=830249011bfc4b9a9e2dddb095d90bfd"
             alt="並び替えアイコン"
             width={16}
