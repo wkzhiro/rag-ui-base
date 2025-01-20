@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {/* グローバルにSessionProviderを適用 */}
-        <Providers>{children}
+        <Providers>
           <DataProvider>
             {children}
           </DataProvider>
