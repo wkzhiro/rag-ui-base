@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { DataProvider } from "./context/DataContext"; // DataProvider をインポート
 import { Providers } from "./providers"; // 先ほど作成したSessionProvider用コンポーネント
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,9 +20,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* グローバルにSessionProviderを適用 */}
         <Providers>
-          <DataProvider>
             {children}
-          </DataProvider>
         </Providers>
       </body>
     </html>
