@@ -7,7 +7,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Header } from "../../../component/Header";
 import { Footer } from "../../../component/Footer";
 
-export function ChatBot() {
+function ChatBot() {
   const { data: session, status } = useSession();
   const isLoading = status === "loading";
 
