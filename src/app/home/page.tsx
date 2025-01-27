@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 
 // もし既存のHeader/Footer等を流用するならimportしてください
 import { Header } from "../../../component/Header";
